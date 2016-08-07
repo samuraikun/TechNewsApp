@@ -26,14 +26,14 @@ class FeedTableViewController: UITableViewController {
         
         self.tableView.registerNib(UINib(nibName: "FeedTableViewCell", bundle: nil), forCellReuseIdentifier: "FeedTableViewCell")
         
-        Alamofire.request(.GET, "https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://menthas.com/top/rss").responseJSON { response in
+        Alamofire.request(.GET, fetchFrom).responseJSON { response in
             //debugPrint(response)
             guard let articles = response.result.value else {
                 return
             }
-            let json = JSON(articles)
-            json.forEach { (_, json) in
-                print(json["responseData"].string)
+            JSON(articles)["responseData"]["feed"]["entries"].forEach {index, value in
+                print("\(index):", value["title"].string!)
+                //print(value["link"].string!)
             }
         }
     }
