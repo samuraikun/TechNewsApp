@@ -1,0 +1,6 @@
+framework module Pods_TechNewsApp {
+  umbrella header "Pods-TechNewsApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
